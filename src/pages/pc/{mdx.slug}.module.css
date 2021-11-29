@@ -1,0 +1,64 @@
+.image-container {
+    width: 66%;
+    height: 40vw;
+    margin-top: 3rem;
+    margin-left: auto;
+    margin-right: auto;;
+}
+.display-image {
+    cursor: pointer;
+}
+
+.title {
+    margin-top: 3rem;
+    font-size: 2rem;
+    text-align: center;
+}
+
+.post-body {
+    text-align: center;
+}
+/*
+.back-to-top-container {
+    margin: 5rem;
+    text-align: center;
+}
+
+.back-to-top-container a {
+    
+    width: 300px;
+    margin: 0 auto;
+    padding: 29px 0 26px;
+    text-decoration: none;
+    font-weight: 200;
+    line-height: 1;
+    display: block;
+    border: 1px solid #3a302d;
+    letter-spacing: 0.08em;
+    border-radius: 100px;
+}
+*/
+/*
+body.ReactModal__Body--open-custom {
+    overflow-y: hidden;
+    position: fixed;
+}
+*/
+
+.react-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(8,4,2,0.7);
+}
+
+.react-modal {
+    position: absolute;
+    /* inset: 40px; */
+    inset: calc(2vw) calc(3vw);
+    border: 1px solid rgb(204, 204, 204);
+    background: rgb(255, 255, 255);
+    overflow: auto;
+    border-radius: 4px;
+    outline: none;
+    padding: 20px;
+}

@@ -1,0 +1,14 @@
+.article {
+    margin-left: auto;
+    padding: 0 20%;
+}
+
+.article h2 {
+    font-size: 60px;
+    font-weight: bold;
+}
+
+.article h3 {
+    font-size: 18px;
+    font-weight: bold;
+}

@@ -1,0 +1,41 @@
+/*
+:root {
+    --main-bg-color: #fafafa;
+    --h-color: #3a302d;
+    --p-color: #3a302d;
+}
+
+html {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 100%;
+    background-color: var(--main-bg-color);
+    font-family: canada-type-gibson, "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック体", YuGothic, 'ヒラギノ角ゴシック Pro', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
+    font-feature-settings: "palt";
+    letter-spacing: 0.08rem;
+    font-weight: 300;
+}
+
+article, aside, details, header, footer, hgroup, nav, section {
+    display: block;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--h-color);
+    font-weight: normal;
+    font-size: 100%;
+    letter-spacing: 0.06rem;
+}
+
+p {
+    margin: 0 !important;
+    color: var(--p-color);
+}
+
+ul {
+    list-style-position: inside;
+}
+*/

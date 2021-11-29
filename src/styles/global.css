@@ -1,0 +1,79 @@
+:root {
+    --main-bg-color: #fafafa;
+    --h-color: #3a302d;
+    --p-color: #3a302d;
+}
+
+html {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 100%;
+    background-color: var(--main-bg-color);
+    font-family: canada-type-gibson, "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック体", YuGothic, 'ヒラギノ角ゴシック Pro', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
+    font-feature-settings: "palt";
+    letter-spacing: 0.08rem;
+    font-weight: 300;
+}
+
+body.ReactModal__Body--open {
+    overflow-y: hidden;
+    position: fixed;
+}
+
+article, aside, details, header, footer, hgroup, nav, section {
+    display: block;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--h-color);
+    font-weight: normal;
+    font-size: 100%;
+    letter-spacing: 0.06rem;
+}
+
+p {
+    margin: 0 !important;
+    color: var(--p-color);
+}
+
+ul {
+    list-style-position: inside;
+}
+
+a,
+a:hover,
+a:link,
+a:active,
+a:visited {
+    text-decoration: none;
+    color:inherit;
+    cursor: pointer;
+}
+
+.back-to-top-container {
+    margin: 5rem;
+    text-align: center;
+}
+
+.back-to-top-container a {
+    min-width: 169px;
+    margin: 0 auto;
+    padding: 29px 0 26px;
+    text-decoration: none;
+    font-weight: 200;
+    line-height: 1;
+    display: block;
+    border: 1px solid #3a302d;
+    /*padding: 24px 60px 22px;*/
+    letter-spacing: 0.08em;
+    border-radius: 100px;
+}
+
+@media (min-width: 446px) {
+    .back-to-top-container a {
+	width: 300px;
+    }
+}

@@ -2,11 +2,13 @@ import * as React from 'react'
 import { Link, graphql } from 'gatsby'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 import Layout from '../components/layout'
+import Seo from '../components/seo'
 import * as Css from './about.module.css'
 
 const AboutPage = ({data}) => {
   return (
     <Layout pageTitle="About Me">
+      <Seo title="aboutページ" description="ABOUR ME" />
       <article className={Css.article}>
         <MDXRenderer>
 	  {data.mdx.body}

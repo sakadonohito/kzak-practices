@@ -2,6 +2,7 @@ import * as React from 'react'
 import { Link, graphql } from 'gatsby'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import Layout from '../components/layout'
+import Seo from '../components/seo'
 import Footer from '../components/footer'
 
 import {FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -9,10 +10,10 @@ import {faDesktop, faMobileAlt } from "@fortawesome/free-solid-svg-icons"
 
 import * as Css from './index.module.css'
 
-
 const IndexPage = ({data}) => {
   return (
     <Layout pageTitle="TOP Page" topFlag={true}>
+      <Seo />
       <div className={Css.container}>
 	{
 	  data.allMdx.nodes.map( node => {

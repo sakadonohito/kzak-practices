@@ -62,3 +62,9 @@ body.ReactModal__Body--open-custom {
     outline: none;
     padding: 20px;
 }
+
+@media (min-width: 2500px) {
+    .react-modal {
+	inset: calc(2vw) calc((100% - 1750px)/2);
+    }
+}

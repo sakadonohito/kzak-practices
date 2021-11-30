@@ -2,19 +2,25 @@ module.exports = {
   siteMetadata: {
     siteUrl: "https://portfolio.k-zak.com",
     title: "kzak's practice gallery",
+    description: "kzak's Portfolio site",
+    image: "/ogp_image.png"
   },
   plugins: [
     "gatsby-plugin-image",
-    "gatsby-plugin-sharp",
     {
-      resolve: "gatsby-source-filesystem",
+      resolve: `gatsby-plugin-google-gtag`,
       options: {
-	name: 'posts',
-	path: `${__dirname}/posts`
-      }
+        trackingIds: [
+          "G-H4KSQGVRRZ",
+          "UA-213835505-1"
+        ],
+        pluginConfig: {
+          head: true,
+        },
+      },
     },
-    "gatsby-plugin-mdx",
-    "gatsby-transformer-sharp",
+    'gatsby-plugin-react-helmet',
+    'gatsby-plugin-sitemap',
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -27,6 +33,108 @@ module.exports = {
         icon: "src/images/favicon-32x32.png", 
         crossOrigin: `use-credentials`
       }
-    }
+    },
+    "gatsby-plugin-mdx",
+    "gatsby-plugin-sharp",
+    "gatsby-transformer-sharp",
+    //よくわかんない追加
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+	name: 'images',
+	path: "./src/images/"
+      },
+      __key: "images",
+    },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+	name: 'pages',
+	path: "./src/pages/"
+      },
+      __key: "pages",
+    },
+    //ここまで
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+	name: 'posts',
+	path: `${__dirname}/posts`
+      }
+    },
+    {
+      resolve: 'gatsby-plugin-canonical-urls',
+      options: {
+        siteUrl: "https://portfolio.k-zak.com",
+        stripQueryString: true
+      }
+    },
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        host: "https://portfolio.k-zak.com",
+        sitemap: "https://portfolio.k-zak.com/sitemap.xml"
+      }
+    },
   ]
 };
+
+
+/*
+    {
+      resolve: `gatsby-plugin-feed-mdx`,
+      options: {
+        query: `
+      {
+        site {
+          siteMetadata {
+            title
+            description
+            siteUrl
+            site_url: siteUrl
+          }
+        }
+      }
+    `,
+        feeds: [
+          {
+            serialize: ({ query: { site, allMdx } }) => {
+              return allMdx.edges.map(edge => {
+                return Object.assign({}, edge.node.frontmatter, {
+                  description: edge.node.excerpt,
+                  date: edge.node.frontmatter.date,
+                  url: site.siteMetadata.siteUrl + "/posts" + edge.node.fields.slug,
+                  guid: site.siteMetadata.siteUrl + "/posts" + edge.node.fields.slug,
+                  custom_elements: [{ "content:encoded": edge.node.html }]
+                });
+              });
+            },
+            query: `
+          {
+            allMdx(
+              sort: { order: DESC, fields: [frontmatter___date] },
+            ) {
+              edges {
+                node {
+                  excerpt
+                  html
+                  fields { 
+                    slug
+                  }
+                  frontmatter {
+                    title
+                    date
+                  }
+                }
+              }
+            }
+          }
+        `,
+            output: "/rss.xml",
+            title: `${siteName}`,
+            match: "^/posts/"
+          },
+        ],
+      },
+    },
+*/

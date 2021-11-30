@@ -4,6 +4,7 @@ import { Link, graphql } from 'gatsby'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import Layout from '../../components/layout'
+import Seo from '../../components/seo'
 import * as Css from './{mdx.slug}.module.css'
 
 // react-modalの初期設定
@@ -36,6 +37,7 @@ const PostPage = ({data}) => {
 
   return (
     <Layout pageTitle={data.mdx.frontmatter.slug} topFlag={false}>
+      <Seo title={`${data.mdx.frontmatter.title}(PC用画面)`} description="PC用画面のサンプル画像を見せるページです" article={true} />
       <div>
         <article>
           <div className={Css.imageContainer}>

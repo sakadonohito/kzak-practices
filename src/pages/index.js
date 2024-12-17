@@ -6,7 +6,7 @@ import Seo from '../components/seo'
 import Footer from '../components/footer'
 
 import {FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import {faDesktop, faMobileAlt } from "@fortawesome/free-solid-svg-icons"
+import {faDesktop, faMobileAlt, faLink } from "@fortawesome/free-solid-svg-icons"
 
 import * as Css from './index.module.css'
 
@@ -27,14 +27,15 @@ const IndexPage = ({data}) => {
                   <GatsbyImage image={pc_image} alt={node.frontmatter.pc_image_display_alt} className={Css.imageContainer}/>
                   <div className={Css.articleBottomTextContainer}>
                     <div>
-		      <p>{node.frontmatter.title}</p>
-		      <p>{node.frontmatter.date}</p>
+			<p>{node.frontmatter.title}</p>
+			<p>{node.frontmatter.date}</p>
                     </div>
                     <div>
-                      <p className={Css.textRight}>
-                        {tags.includes('pc') && <Link to={`pc/${node.slug}`}><FontAwesomeIcon icon={faDesktop}/></Link>}
-                        {tags.includes('sp') && <Link to={`sp/${node.slug}`}><FontAwesomeIcon icon={faMobileAlt}/></Link>}
-                      </p>
+			<p className={Css.textRight}>
+                            {tags.includes('pc') && <Link to={`pc/${node.slug}`}><FontAwesomeIcon icon={faDesktop}/></Link>}
+                            {tags.includes('sp') && <Link to={`sp/${node.slug}`}><FontAwesomeIcon icon={faMobileAlt}/></Link>}
+			    {node.frontmatter.product_url && (<a href={node.frontmatter.product_url} target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faLink}/></a>)}
+			</p>
                     </div>
                   </div>
 	        </div>
@@ -64,6 +65,7 @@ query {
           }
         }
         pc_image_display_alt
+        product_url
         tags
       }
       id

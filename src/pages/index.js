@@ -16,31 +16,33 @@ const IndexPage = ({data}) => {
       <Seo />
       <div className={Css.container}>
 	{
-	  data.allMdx.nodes.map( node => {
-	    //console.log(node.frontmatter);
+	  //data.allMdx.nodes.map( node => {
+	  data.allMdx.edges.map( n => {
+	    const node = n.node;
+	    console.log(node);
 	    const tags = node.frontmatter.tags
-            const pc_image = getImage(node.frontmatter.pc_image_display) || undefined
-            //const sp_image = getImage(node.frontmatter.sp_image) || undefined
-            return (
+	    const pc_image = getImage(node.frontmatter.pc_image_display) || undefined
+	    //const sp_image = getImage(node.frontmatter.sp_image) || undefined
+	    return (
 	      <article key={node.id} className={Css.articleContainer}>
-	        <div>
-                  <GatsbyImage image={pc_image} alt={node.frontmatter.pc_image_display_alt} className={Css.imageContainer}/>
-                  <div className={Css.articleBottomTextContainer}>
-                    <div>
-			<p>{node.frontmatter.title}</p>
-			<p>{node.frontmatter.date}</p>
-                    </div>
-                    <div>
-			<p className={Css.textRight}>
-                            {tags.includes('pc') && <Link to={`pc/${node.slug}`}><FontAwesomeIcon icon={faDesktop}/></Link>}
-                            {tags.includes('sp') && <Link to={`sp/${node.slug}`}><FontAwesomeIcon icon={faMobileAlt}/></Link>}
-			    {node.frontmatter.product_url && (<a href={node.frontmatter.product_url} target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faLink}/></a>)}
-			</p>
-                    </div>
-                  </div>
-	        </div>
+		<div>
+		  <GatsbyImage image={pc_image} alt={node.frontmatter.pc_image_display_alt} className={Css.imageContainer}/>
+		  <div className={Css.articleBottomTextContainer}>
+		    <div>
+		      <p>{node.frontmatter.title}</p>
+		      <p>{node.frontmatter.date}</p>
+		    </div>
+		    <div>
+		      <p className={Css.textRight}>
+			{tags.includes('pc') && <Link to={`pc${node.fields.slug}`}><FontAwesomeIcon icon={faDesktop}/></Link>}
+			{tags.includes('sp') && <Link to={`sp${node.fields.slug}`}><FontAwesomeIcon icon={faMobileAlt}/></Link>}
+			{node.frontmatter.product_url && (<a href={node.frontmatter.product_url} target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faLink}/></a>)}
+		      </p>
+		    </div>
+		  </div>
+		</div>
 	      </article>
-            )
+	    )
 	  })
 	}
       </div>
@@ -51,29 +53,83 @@ const IndexPage = ({data}) => {
 
 export const query = graphql`
 query {
-  allMdx (
-    filter: {slug: {ne: "about/"}}
-    sort: {fields: frontmatter___date, order: DESC}
+  allMdx(
+    filter: {fields: {slug: {ne: "/about/"}}}
+    sort: {frontmatter: {date: DESC}}
   ) {
-    nodes {
-      frontmatter {
-        date
-        title
-        pc_image_display {
-          childImageSharp {
-            gatsbyImageData
+    edges {
+      node {
+        id
+        frontmatter {
+          title
+          date
+          tags
+          product_url
+          pc_image_display_alt
+          pc_image_display {
+            childImageSharp {
+              gatsbyImageData
+            }
           }
         }
-        pc_image_display_alt
-        product_url
-        tags
+        fields {
+         slug
+        }
       }
-      id
-      slug
     }
   }
 }
-
 `
 
 export default IndexPage
+
+
+/*
+  allMdx (
+  filter: {slug: {ne: "about/"}}
+  sort: {fields: frontmatter___date, order: DESC}
+  ) {
+  nodes {
+  frontmatter {
+  date
+  title
+  pc_image_display {
+  childImageSharp {
+  gatsbyImageData
+  }
+  }
+  pc_image_display_alt
+  product_url
+  tags
+  }
+  id
+  slug
+  }
+  }
+
+  allMdx(
+  filter: {fields: {slug: {ne: "about/"}}}
+  sort: {frontmatter: {date: DESC}}
+  ) {
+  edges {
+  node {
+  id
+  frontmatter {
+  title
+  date
+  tags
+  product_url
+  pc_image_display_alt
+  pc_image_display {
+  childImageSharp {
+  gatsbyImageData
+  }
+  }
+  }
+  fields {
+  slug
+  }
+  }
+  }
+  }
+*/

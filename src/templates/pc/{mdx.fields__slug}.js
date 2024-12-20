@@ -1,11 +1,12 @@
 import * as React from 'react'
 import Modal from 'react-modal'
 import { Link, graphql } from 'gatsby'
-import { MDXRenderer } from 'gatsby-plugin-mdx'
+//import { MDXRenderer } from 'gatsby-plugin-mdx'
+//import { MDXProvider } from '@mdx-js/react';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import Layout from '../../components/layout'
 import Seo from '../../components/seo'
-import * as Css from './{mdx.slug}.module.css'
+import * as Css from './{mdx.fields__slug}.module.css'
 
 // react-modalの初期設定
 // root-nodeのselectorを設定
@@ -20,7 +21,7 @@ const ModalSingle = () => {
 */
 
 
-const PostPage = ({data}) => {
+const PostPage = ({data, children}) => {
   const display_image = getImage(data.mdx.frontmatter.pc_image_display)
   const display_image_alt = data.mdx.frontmatter.pc_image_display_alt
 
@@ -46,9 +47,7 @@ const PostPage = ({data}) => {
           <h2 className={Css.title}>{data.mdx.frontmatter.title}</h2>
           <section>
             <div className={Css.postBody}>
-              <MDXRenderer>
-	        {data.mdx.body}
-              </MDXRenderer>
+              {children}
             </div>
             <div className={"back-to-top-container"}>
               <Link to={'/'}>TOPページに戻る</Link>
@@ -92,9 +91,11 @@ query ($id: String) {
           gatsbyImageData
         }
       }
+      slug
     }
-    slug
-    body
+    fields {
+      slug
+    }
   }
 }
 `

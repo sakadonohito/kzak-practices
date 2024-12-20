@@ -7,7 +7,7 @@ const Footer = () => {
     <footer className={Css.footer}>
       <ul>
         <li>
-	  <Link to="about">ABOUT</Link>
+	  <Link to="aboutus">ABOUT</Link>
         </li>
       </ul>
     </footer>

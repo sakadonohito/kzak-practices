@@ -1,12 +1,12 @@
 import * as React from 'react'
 import PropTypes from 'prop-types'
-import { Helmet } from 'react-helmet'
+//import * from 'gatsby'
 import { useLocation } from "@reach/router"
 import { useStaticQuery, graphql } from 'gatsby'
 import ogpImage from '../pages/static_images/ogp_image.png'
 
-const Seo = ({ title, description, lang = 'ja', article = false }) => {
-
+//const Seo = ({ title, description, lang = 'ja', article = false }) => {
+const Seo = ({ title, description, ogpImgPath, article = false, children }) => {
   const { pathname } = useLocation()
     const data = useStaticQuery(graphql`
     query {
@@ -23,13 +23,10 @@ const Seo = ({ title, description, lang = 'ja', article = false }) => {
   const metaTitle = title || data.site.siteMetadata.defaultTitle
   const metaDescription = description || data.site.siteMetadata.defaultDescription
   const pageTitle = title? title: 'TOP page'
-  console.log(article)
+  //console.log(article)
   return (
-    <Helmet
-      htmlAttributes={{lang}} 
-      title={metaTitle}
-    >
-      <head prefix="og: http://ogp.me/ns#" />
+    <>
+      <title>{metaTitle}</title>
       <meta name="description" content={metaDescription} />
 
       <meta property="og:site_name" content={data.site.siteMetadata.defaultTitle} />
@@ -40,7 +37,8 @@ const Seo = ({ title, description, lang = 'ja', article = false }) => {
       <meta property="og:type" content={article? 'article':'website'} />
 
       <meta name="twitter:card" content="summary_large_image" />
-    </Helmet>
+      {children}
+    </>
   )
 }
 
@@ -59,3 +57,8 @@ Seo.defaultProps = {
   image: null,
   article: false
 }
+/*
+        //htmlAttributes={{lang}} 
+      //title={metaTitle}
+      //<head prefix="og: http://ogp.me/ns#" />
+      */

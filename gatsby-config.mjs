@@ -1,4 +1,9 @@
-module.exports = {
+import { dirname, resolve } from "path";
+import { fileURLToPath } from "url";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
+const config = {
   siteMetadata: {
     siteUrl: "https://portfolio.k-zak.com",
     title: "kzak's practice gallery",
@@ -19,7 +24,6 @@ module.exports = {
         },
       },
     },
-    'gatsby-plugin-react-helmet',
     'gatsby-plugin-sitemap',
     {
       resolve: `gatsby-plugin-manifest`,
@@ -34,10 +38,10 @@ module.exports = {
         crossOrigin: `use-credentials`
       }
     },
-    "gatsby-plugin-mdx",
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
     //よくわかんない追加
+/*
     {
       resolve: "gatsby-source-filesystem",
       options: {
@@ -54,6 +58,7 @@ module.exports = {
       },
       __key: "pages",
     },
+*/
     //ここまで
     {
       resolve: "gatsby-source-filesystem",
@@ -61,6 +66,20 @@ module.exports = {
 	name: 'posts',
 	path: `${__dirname}/posts`
       }
+    },
+    {
+      resolve: `gatsby-plugin-mdx`,
+      options: {
+        extensions: [`.mdx`, `.md`], // 拡張子を設定
+        mdxOptions: {
+          remarkPlugins: [
+
+          ],                         // markdown処理用プラグイン
+          rehypePlugins: [],         // HTML処理用プラグイン
+        },
+        defaultLayouts: {},
+        degug: false,
+      },
     },
     {
       resolve: 'gatsby-plugin-canonical-urls',
@@ -138,3 +157,5 @@ module.exports = {
       },
     },
 */
+
+export default config;

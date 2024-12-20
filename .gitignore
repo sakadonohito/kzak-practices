@@ -3,6 +3,9 @@ node_modules/
 .cache/
 public
 yarn-error.log
+.node-version
+fuga.json
+hoge.json
 
 # Local Netlify folder
 .netlify

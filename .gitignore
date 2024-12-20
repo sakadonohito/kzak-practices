@@ -7,5 +7,7 @@ yarn-error.log
 fuga.json
 hoge.json
 
+# 楽したいsh
+netlify_deploy.sh
 # Local Netlify folder
 .netlify

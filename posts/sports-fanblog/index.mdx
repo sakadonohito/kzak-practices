@@ -35,3 +35,12 @@ Python製SSG(static site generator)のPelicanを使ってブログサイトを�
 
 ### 動作環境
 - S3(AWS)
+    * Webサイトの物理的設置場所
+- Codecommit
+    * GitHubの代わり、markdownファイルをpush
+- CodeBuild
+    * Dockerイメージでhtmlをビルド
+- CloudFront
+    * Webサイトの配信
+- Amazon Certificate Manager
+    * SSL証明証
